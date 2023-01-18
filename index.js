@@ -45,7 +45,7 @@ const enviarMensaje = async () => {
       }
     
       // Ahora hago lo mismo con los clientes que se les cumple x cantidad de dias que faltan
-      const customQueryAusente ="select name, phone_number from client where to_char((now() - fecha_ultimo_corte ), 'DD')::INT = (select frecuencia from mensaje where tipo_mensaje_id = 2)";
+      const customQueryAusente ="select name, phone_number from client where to_char((now() - fecha_ultimo_corte ), 'DD')::INT = (select frecuencia from mensaje where tipo_mensaje_id = 2 limit 1)";
       const responseAusente = await clientDb2.query(customQueryAusente);
     
       if(responseAusente.rows.length > 0){
